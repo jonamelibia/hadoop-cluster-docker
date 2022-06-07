@@ -3,27 +3,25 @@
 # test the hadoop cluster by running wordcount
 
 # create input files 
-mkdir input
-echo "Hello Docker" >input/file2.txt
-echo "Hello Hadoop" >input/file1.txt
-
+mkdir input2
+wget "https://www.gutenberg.org/files/2701/2701-0.txt" >input2/file.txt
+echo -e input2/file.txt
 # create input directory on HDFS
-hadoop fs -mkdir -p input
+hadoop fs -mkdir -p input2
 
 # put input files to HDFS
-hdfs dfs -put ./input/* input
+hdfs dfs -put ./input2/* input2
 
 # run wordcount 
 hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/sources/hadoop-mapreduce-examples-2.7.2-sources.jar org.apache.hadoop.examples.WordCount input output
 
 # print the input files
-echo -e "\ninput file1.txt:"
-hdfs dfs -cat input/file1.txt
+echo -e "\input file.txt:"
+hdfs dfs -cat input2/file.txt
 
-echo -e "\ninput file2.txt:"
-hdfs dfs -cat input/file2.txt
 
 # print the output of wordcount
 echo -e "\nwordcount output:"
 hdfs dfs -cat output/part-r-00000
+
 
