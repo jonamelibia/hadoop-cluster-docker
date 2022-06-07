@@ -4,7 +4,7 @@
 
 # create input files 
 mkdir input
-wget "https://www.gutenberg.org/files/2701/2701-0.txt" >input2/file.txt
+wget "https://www.gutenberg.org/files/2701/2701-0.txt" >input/file.txt
 echo -e input/file.txt
 # create input directory on HDFS
 hadoop fs -mkdir -p input
